@@ -1,0 +1,19 @@
+class Solution {
+    public String sortSentence(String s) {
+        String sc ="";
+        String scen[]= s.split(" "); 
+        String temp[]=new String[scen.length];
+        for(int i=0; i< scen.length; i++){
+int pos= scen[i].charAt(scen[i].length()-1) - '0';
+            temp[pos-1] = scen[i].substring(0,scen[i].length()-1);   
+        }
+                                            
+       for(String scn: temp){
+           sc+= scn;
+           sc= sc.concat(" ");
+           
+       } 
+         sc = sc.trim();
+          return sc;                                  
+    }
+}
