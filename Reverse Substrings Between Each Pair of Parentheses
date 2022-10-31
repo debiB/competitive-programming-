@@ -1,0 +1,22 @@
+class Solution {
+public:
+    string reverseParentheses(string s) {
+        stack <int> st;
+        for(int i=0; i< s.size(); i++){
+            if(s[i] =='(') st.push(i);
+            else if (s[i] ==')'){
+               int top = st.top() +1;
+                int bottom = i;
+                reverse(s.begin() + top , s.begin() + bottom);
+                st.pop();
+            }
+        }
+        string rev=""; 
+        for(int i=0; i<s.length(); i++){
+           if(s[i]=='(' || s[i]==')' )  continue;
+            else rev.push_back(s[i]);
+            
+        }
+        return rev;
+    }
+};
