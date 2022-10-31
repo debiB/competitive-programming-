@@ -1,0 +1,24 @@
+class Solution {
+    
+    Stack <Integer> s = new Stack<>();
+    public int evalRPN(String[] tokens) {
+            for(String token: tokens){
+ if("+-*/".contains(token)){
+                int y= s.pop();
+                int x =s.pop();
+                if (token.equals("+"))
+               s.push(y+x);
+                else if(token.equals("-"))
+                     s.push(x-y);
+                 else if(token.equals("*"))
+                     s.push(y*x);
+                  else if(token.equals("/"))
+                       s.push(x/y);}
+            else{
+                s.push(Integer.parseInt(token));
+            }
+        }
+         return s.pop();
+    }
+
+    }
