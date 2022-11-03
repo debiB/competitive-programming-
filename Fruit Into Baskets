@@ -1,0 +1,28 @@
+class Solution {
+    public int totalFruit(int[] fruits) {
+        int lfruit = -1;
+        int sfruit =-1;
+        int count= 0;
+        int currmax =0;
+        int max = 0 ; 
+        for(int fruit: fruits){
+             if(fruit == lfruit || fruit == sfruit){
+                 currmax+=1;
+             }else {
+                  currmax = count +1;
+             }
+            if (fruit == lfruit){
+                 count ++;
+            }else {
+                 count =1;
+            }
+            if (fruit != lfruit){
+                sfruit = lfruit;
+                lfruit=fruit;
+            }
+            max = Math.max(currmax,max);
+        }
+        return max; 
+        
+    }
+}
