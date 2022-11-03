@@ -1,6 +1,5 @@
 class Solution {
     public int numOfSubarrays(int[] arr, int k, int threshold) {
-      // Stack <Integer> s  = new Stack <>(); 
         int sum =0;
         int avgcount =0;
         int t =threshold*k;
