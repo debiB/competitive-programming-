@@ -1,0 +1,19 @@
+class Solution {
+    public int maxVowels(String s, int k) {
+        List <Character> v= Arrays.asList('a','e','i','o','u');
+        Set <Character> vow = new HashSet<Character>(v);
+        int count=0;
+        for(int i=0; i< k; i++){
+            if(vow.contains(s.charAt(i))) count++;
+        }
+        int first =0, last =k-1, max= count; 
+        while (last < s.length()-1){
+            if(vow.contains(s.charAt(first)))count--;
+            first++;
+            last++;
+            if(vow.contains(s.charAt(last))) count++;
+           max = Math.max(max,count);  
+        }
+        return max;
+    }
+}
