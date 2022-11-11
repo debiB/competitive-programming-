@@ -1,0 +1,24 @@
+class Solution {
+    public int[][] kClosest(int[][] points, int k) {
+        // evaluate the area 
+        // sort the area 
+        // print out the array up to <k that gives that area
+        int [] area =new int [points.length];
+        for ( int i =0; i< points.length; i++){
+           area[i] = points[i][0]*points[i][0] + points[i][1]*points[i][1] ;   
+        }
+       Arrays.sort(area);
+       
+         int [][] res = new int[k][2];
+        int index =0;
+      for ( int [] i : points){
+          if ((i[0]* i[0] + i[1]* i[1]) <= area[k-1]){
+             res[index++]= i; 
+              
+               
+          }
+          
+      }
+        return res;
+        }
+    }
