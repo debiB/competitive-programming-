@@ -1,0 +1,19 @@
+ public static List<Integer> gradingStudents(List<Integer> grades) {
+    // Write your code here
+    int i =0; 
+    List <Integer> l = new ArrayList();
+    while(i < grades.size()){
+        int g= grades.get(i);
+        if (g < 38 || 5 - (g%5)>=3){
+        l.add(g);
+        }
+        else{
+         l.add(g+(5-(g%5)));    
+        }
+        
+     i++;   
+    }
+return l;
+    }
+
+}
