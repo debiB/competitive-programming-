@@ -1,0 +1,12 @@
+class Solution {
+    public int numIdenticalPairs(int[] nums) {
+        int [] count = new int[101];
+         for (int i= 0;i<nums.length; i++)
+             count[nums[i]]++;
+    int total= 0; 
+    
+    for (int i: count){
+        total+= ((i)*(i-1))/2; 
+    }
+    return total; 
+}}
