@@ -1,0 +1,12 @@
+class Solution {
+    public String kthLargestNumber(String[] nums, int k) {
+       Arrays.sort(nums, (a,b) -> (a.length() == b.length() ? a.compareTo(b): Integer.compare(a.length(), b.length())));
+       return nums[nums.length-k]; 
+    }
+}
+/* -> this opreator is used to separate the prameters from the expression. 
+In this case, the parameters are a and b and the expression is the ternary opreation that comes after it. Arrays.sort() method can have two 
+parameters. The second one is comparator: we can define a method of sorting 
+in this parameter. For example, if we were to use arrays.sort() function in this instance. 
+it will just compare the first elements of the array. i.e "23" < "9". since 2 is compared with 9.
+Therefore, we have to provide a means of comaprision: given the same length compare the contents if not consider the length*/   
