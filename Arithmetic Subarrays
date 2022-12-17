@@ -1,0 +1,24 @@
+class Solution {
+    public List<Boolean> checkArithmeticSubarrays(int[] nums, int[] l, int[] r) {
+        List <Boolean> answer= new ArrayList();
+        for(int i=0;i< l.length; i++){
+
+            answer.add(check(Arrays.copyOfRange(nums,l[i],r[i]+1))); 
+    /* Arrays.copyOfRange(nums,startindex,endindex) copies an array startin from startindex to endindex-1, so i added +1*/ 
+        }
+        return answer;
+    }
+    Boolean check(int [] nums){
+if(nums.length==1||nums.length==2 ) return true;
+Arrays.sort(nums);
+ int dic= nums[1] - nums[0];
+    for(int i= 1; i< nums.length-1;i++){
+        int dic2= nums[i+1]- nums[i];
+        if(dic != dic2 )
+            return false;
+        }
+return true;
+ 
+    }
+
+    }
