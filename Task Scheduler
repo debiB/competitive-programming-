@@ -1,0 +1,14 @@
+class Solution {
+    public int leastInterval(char[] tasks, int n) {
+     int[] freq = new int[26];
+     for(int i=0; i< tasks.length;i++)
+         freq[tasks[i]- 'A']++;
+         Arrays.sort(freq);
+         int max = freq[25]-1;
+         int idle = n* max; // to get the total num of idle slots 
+         for(int i=24; i>=0;i--){
+             idle-= Math.min(freq[i], max); /* fill in the remaining slots. incase there is equal max frequencey, i used min.*/  
+         }
+        return idle > 0? idle + tasks.length:tasks.length;
+    }
+}
