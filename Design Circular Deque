@@ -1,0 +1,82 @@
+class MyCircularDeque {
+    int [] q;
+    int front = 0 , rear = 0, count=0;  
+    public MyCircularDeque(int k) {
+      q=new int[k];
+      Arrays.fill(q, -1); 
+    }
+    
+    public boolean insertFront(int value) {
+     if(!isFull()){
+         if(isEmpty()){
+             front=0;
+             rear=0;
+             q[rear]=value;
+             count++;
+             return true;
+         }
+          front= front==0? q.length-1: (front-1)%q.length;
+         q[front]=value;
+         count++;
+         return true;
+         }
+        return false;
+     }
+
+    
+       
+    
+    
+    public boolean insertLast(int value) {
+       if(!isFull()){
+         if(isEmpty()){
+             front= rear=0;
+             q[rear]=value;
+             count++;
+             return true;
+         } 
+         rear= (rear+1)%q.length;
+         q[rear]=value;
+         count++;
+         return true;
+    }
+    return false;
+    }
+    
+    public boolean deleteFront() {
+      if(!isEmpty()){
+            q[front]=-1;
+            front= (front+1)%q.length;
+            count--;
+            return true;
+        } 
+        return false; 
+    }
+    
+    public boolean deleteLast() {
+    if(!isEmpty()){
+         q[rear]=-1;
+        rear=rear ==0? q.length-1: (rear-1)%q.length;
+        count--;
+        return true;
+    }
+    return false; 
+        
+    }
+    
+    public int getFront() {
+     return q[front];   
+    }
+    
+    public int getRear() {
+    return q[rear];    
+    }
+    
+    public boolean isEmpty() {
+      return count==0? true:false;  
+    }
+    
+    public boolean isFull() {
+      return count== q.length? true:false;  
+    }
+}
