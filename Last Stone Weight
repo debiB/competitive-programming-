@@ -1,0 +1,20 @@
+class Solution {
+    public int lastStoneWeight(int[] stones) {
+        if(stones.length ==1) return stones[0];
+PriorityQueue <Integer> m= new PriorityQueue(Collections.reverseOrder());
+/* by default priority queues are min: the min element has highest priority so i used collecions.revereseorder() comparator class to alter it. */ 
+for(int i=0; i< stones.length;i++){
+    m.add(stones[i]);
+}  
+int a=0;
+while(m.size()>1){
+    Integer y = m.poll();
+    Integer x= m.poll();
+    if(x!=y){
+        a =y-x;
+        m.add(a);
+    }
+}
+return m.isEmpty()? 0 : m.peek();
+    }
+}
