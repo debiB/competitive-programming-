@@ -1,0 +1,28 @@
+class Solution {
+    void flip(int[] arr, int ind){
+        int i=0,j=ind;
+        while(i<j){
+            int temp=arr[i];
+            arr[i] =arr[j];
+            arr[j] =temp;
+            i++;
+            j--;
+        }
+    }
+    public List<Integer> pancakeSort(int[] arr) {
+        List <Integer> m = new ArrayList();
+        int max; 
+        for(int i=arr.length-1;i>0;i--){
+            for (int j=1; j<= i;j++){
+                if(arr[j]==i+1){
+                    flip(arr,j);
+                    m.add(j+1);
+                    break;
+                }
+            }
+            flip(arr, i);
+            m.add(i+1); 
+        }
+        return m;
+    }
+}
