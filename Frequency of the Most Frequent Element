@@ -1,0 +1,17 @@
+class Solution {
+    public int maxFrequency(int[] nums, int k) {
+        Arrays.sort(nums);
+        int i=0,j,max=0;
+        long total=0;
+        for(j=0;j<nums.length;j++){
+            total+=nums[j];
+        while (nums[j]*(j-i+1)> total+k){
+            total-=nums[i];
+            i++;
+        }
+        int curr = j-i+1;
+        max=Math.max(max, curr);
+        }
+        return max;
+    }
+}
