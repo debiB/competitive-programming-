@@ -1,0 +1,67 @@
+class MyLinkedList {
+class node{
+    int val;
+    node next;
+    node(int val){
+        this.val=val;
+    }
+}
+node dummy;
+int size;
+    public MyLinkedList() {
+        dummy = new node(Integer.MIN_VALUE);
+        size =0;
+    }
+    
+    public int get(int index) {
+        if(index >= size || dummy.next == null) return -1;
+        node curr= dummy;
+        for(int i=0; i<=index;i++){
+            curr=curr.next;
+        }
+       
+        return curr.val;
+    }
+    
+    public void addAtHead(int val) {
+        node n = new node(val);
+        n.next = dummy.next;
+        dummy.next=n;
+        size++;
+    }
+    
+    public void addAtTail(int val) {
+        node n=new node(val);
+        if(dummy.next == null) {
+            dummy.next =n;
+        }
+        node curr=dummy;
+        for(int i=0;i<size;i++){
+            curr=curr.next;
+        }
+        curr.next =n;
+        size++;
+    }
+    
+    public void addAtIndex(int index, int val) {
+        if(index > size) return;
+        node n= new node(val); 
+        node curr=dummy;
+        for(int i=0; i< index;i++){
+            curr=curr.next;
+        }
+       n.next = curr.next;
+        curr.next=n;
+        size++;
+    }
+    
+    public void deleteAtIndex(int index) {
+       if(index>= size) return; 
+       node curr = dummy; 
+       for(int i=0;i<index;i++){
+           curr= curr.next;
+       }
+       curr.next = curr.next.next;
+       size--; 
+    }
+}
