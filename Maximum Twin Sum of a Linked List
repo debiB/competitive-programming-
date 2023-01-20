@@ -1,0 +1,31 @@
+class Solution {
+    public int pairSum(ListNode head) {
+      ListNode slow = head; 
+      ListNode fast = head; 
+      while(fast != null && fast.next != null){
+          fast = fast.next.next;
+          slow = slow.next; 
+      }  
+      slow = rev(slow);
+      fast = head;
+      int max=Integer.MIN_VALUE,curr=0;
+      while(slow!= null && fast != null){
+          curr = fast.val + slow.val;
+          max= Math.max(max, curr);
+          slow= slow.next;
+          fast = fast.next; 
+           
+      } 
+        return max;
+    }
+    ListNode rev(ListNode head){
+        ListNode prev=null; 
+        while(head!= null){
+            ListNode nxt = head.next;
+            head.next=prev; 
+            prev=head;
+            head= nxt;
+        }
+        return prev;
+    }
+}
