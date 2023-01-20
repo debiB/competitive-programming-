@@ -1,0 +1,11 @@
+static boolean hasCycle(SinglyLinkedListNode head) {
+        if(head == null || head.next == null) return false;
+                SinglyLinkedListNode slow = head;
+                SinglyLinkedListNode fast = head; 
+            do{
+                slow = slow.next;
+                fast = fast.next.next; 
+                if(fast == null || fast.next == null) return false; 
+            }while(slow != fast);
+            return true;
+    }
