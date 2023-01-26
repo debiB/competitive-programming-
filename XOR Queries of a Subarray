@@ -1,0 +1,20 @@
+class Solution {
+    public int[] xorQueries(int[] arr, int[][] queries) {
+        int [] prexor = new int [arr.length+1];
+        prexor[0] = arr[0];
+        for(int i=1;i< prexor.length-1;i++){
+            prexor[i] = prexor[i-1] ^ arr[i];    
+        }
+        int i=0;
+        int [] res = new int[queries.length];
+        for(int [] ar:queries){
+            if(ar[0] !=0)
+            res[i++] = prexor[ar[0]-1] ^ prexor[ar[1]];
+            else{
+              res[i++] = prexor[ar[1]];   
+            }
+        }
+        
+return res;
+    }
+}
