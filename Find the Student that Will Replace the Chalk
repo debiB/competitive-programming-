@@ -1,0 +1,16 @@
+class Solution {
+    public int chalkReplacer(int[] chalk, int k) {
+        long sum=0; 
+        for(int i=0;i< chalk.length;i++){
+            sum+= (long)chalk[i];
+        }
+        long residue = (long) k%sum;
+        sum=0;
+        int i;
+        for(i=0;i<chalk.length;i++){
+            sum+=(long)chalk[i];
+            if(sum>residue) break; 
+        }
+        return i;
+    }
+}
