@@ -1,0 +1,24 @@
+class Solution {
+    public int bagOfTokensScore(int[] tokens, int power) {
+        if(tokens.length == 0) return 0;
+        Arrays.sort(tokens); 
+        if(power < tokens[0]) return 0;
+        int score=0;
+        int i=0 , j= tokens.length-1, k=power;
+        while(i<=j){
+                if(k>=tokens[i]){
+                score+=1;
+                k-=tokens[i];
+                 i++;
+                }
+           else if(score >= 1 && k< tokens[i]){
+               if(i==j) break; 
+                k+= tokens[j];
+                score-=1;
+                j--;
+            }
+ 
+        }
+        return score; 
+    }
+}
