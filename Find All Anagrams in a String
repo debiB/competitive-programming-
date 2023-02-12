@@ -1,0 +1,31 @@
+class Solution {
+    public List<Integer> findAnagrams(String s, String p) {
+        List<Integer> ans = new ArrayList();
+        if(s.length() < p.length() || s.length() ==0 || s == null) return ans; 
+        int [] sm = new int[26]; 
+        int [] pm = new int[26]; 
+        for(int i=0; i< p.length(); i++){
+            pm[p.charAt(i) - 'a']++; 
+        }
+      int j=0; 
+      for(int i=0; i< s.length(); i++){
+          sm[s.charAt(i) - 'a']++; 
+             if(i-j+1 == p.length()){
+                if(isAnagram(sm, pm)){
+                    ans.add(j);  
+                }
+                sm[s.charAt(j) - 'a']--; 
+                 j++;  
+            }
+      }
+      return ans;
+    }
+        boolean isAnagram(int [] a, int [] b){
+            for(int i=0; i< 26; i++){
+                if(a[i] != b[i]){
+                    return false; 
+                }
+            }
+            return true; 
+        }
+}
