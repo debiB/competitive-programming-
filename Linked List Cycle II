@@ -1,0 +1,37 @@
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+        if(head== null || head.next == null) return null;
+        ListNode fast= head;
+        ListNode slow= head;
+        do{
+            if(fast == null || fast.next == null) return null;
+            fast=fast.next.next;
+            slow = slow.next;
+        }while(fast != slow);
+        fast= head;
+        while (fast != slow){
+            fast = fast.next;
+            slow = slow.next;
+        }
+        return slow;
+    }
+}
+/* Math behind this. let n= num of cycles slow pointer travels.m= num of cycles fast pointer travels. at some point in the loop they are gonna meet. 
+the total distance traveled unitil they meet: slow = n*l+y(distance travred in the loop for x and y to meet)+x(disance before entering the loop), fast = m*l+y+x, the total distance covered by fast pointer is twice, since the speed is twice. 
+ m*l+y+x = 2(n*l+y+x); rearranging the eqn we get x= (m-2n)l-y;  after meeting moving the fast pointer to head and traversing whill make the fast and slow pointers to meet at the start of the loop; 
+
+
+
+
+*/
