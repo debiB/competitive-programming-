@@ -1,0 +1,24 @@
+class Solution {
+    public int hIndex(int[] citations) {
+        if(citations.length ==1) return citations[0]==0?0:1;
+        int left=0, right=citations.length-1;
+        int mid = (left+right)/2;
+        return r(citations,left,right,mid);
+      
+    }
+    int r(int[] citations, int left, int right,int mid){
+        while(left<=right){
+            if(citations[mid] > (citations.length-mid)){
+                right=mid-1;
+                mid = (left+right)/2;
+                 r(citations,left,right,mid);
+            }else if(citations[mid] < (citations.length-mid)){
+                left=mid+1;
+                mid = (left+right)/2;
+                r(citations,left,right,mid); 
+            }else if(citations[mid] == (citations.length-mid)) 
+            return citations[mid]; 
+        }
+ return citations.length - (right+1);
+    }
+}
