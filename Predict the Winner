@@ -1,0 +1,21 @@
+class Solution {
+    public boolean PredictTheWinner(int[] nums) {
+      long score1 =pre(nums,0, nums.length-1,0);
+      long score2 = 0;
+      long sum=0;
+        for(int i=0;i< nums.length;i++){
+            sum+= nums[i]; 
+        } 
+        score2= sum - score1;
+        return (score1>= score2); 
+           
+    }
+    long pre(int [] nums, int s, int e, int turn){
+        if(s>e) return 0;
+        if(turn==0)
+         return Math.max(nums[s] + pre(nums,s+1,e,1), nums[e] + pre(nums,s,e-1,1));
+        else 
+        return Math.min(pre(nums,s+1,e,0),pre(nums,s,e-1,0));
+        
+    }
+}
