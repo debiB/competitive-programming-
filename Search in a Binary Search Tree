@@ -1,0 +1,13 @@
+class Solution:
+    def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+
+        def helper(root):
+            if not root:
+                return None
+            elif(root.val > val):
+                return helper(root.left)
+            elif(root.val < val):
+                return helper(root.right)
+            elif(root.val == val):
+                return root
+        return helper(root)
