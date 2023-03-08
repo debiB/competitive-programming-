@@ -1,0 +1,8 @@
+class Solution:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        if(p == None and q == None):
+            return True
+        elif((not q and p) or (not p and q) or (q.val != p.val) ):
+            return False
+        else:
+            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
