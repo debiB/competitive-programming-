@@ -1,0 +1,13 @@
+class Solution:
+    def __init__(self):
+        self.dict = defaultdict(list)
+    def helper(self, row, root):
+        if not root:
+            return
+        self.dict[row].append(root.val)
+        self.helper(row+1, root.left)
+        self.helper(row+1, root.right)
+        return self.dict
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        res = self.helper(0,root)
+        return res.values() if res else []
