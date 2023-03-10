@@ -1,0 +1,12 @@
+class Solution:
+    def rev(self,s, idx1, idx2):
+        if (idx1 < idx2):
+            temp = s[idx1]
+            s[idx1] = s[idx2]
+            s[idx2] = temp  
+            self.rev(s, idx1 + 1, idx2 -1)
+    def reverseString(self, s: List[str]) -> None:
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        self.rev(s, 0, len(s)-1)
