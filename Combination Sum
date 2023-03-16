@@ -1,0 +1,18 @@
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        ans = []
+        def helper(comb, sum, idx):
+            if sum == target:
+                ans.append(comb.copy())
+                return
+            if idx == len(candidates) or (target - sum) < candidates[idx]:
+                return
+            comb.append(candidates[idx])
+            helper(comb, sum + candidates[idx], idx)
+            comb.pop()
+            helper(comb, sum, idx+1)
+        candidates.sort()
+        helper([],0,0)
+        return ans
+            
+        
