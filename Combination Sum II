@@ -1,0 +1,23 @@
+class Solution:
+    def combinationSum2(self, nums: List[int], target: int) -> List[List[int]]:
+        ans = []
+        
+        def helper(comb, sum, idx):
+            if sum == target:
+                ans.append (comb.copy())
+                return 
+            if idx >= len(nums) or (target - sum)< nums[idx] or sum > target:
+                return
+            visited = set() 
+            for i in range(idx, len(nums)):
+                if nums[i] not in visited:
+                    visited.add(nums[i])
+                    comb.append(nums[i])
+                    sum += nums[i]
+                    helper(comb,sum, i + 1)
+                    comb.pop()
+                    sum -= nums[i]
+                    
+        nums.sort() 
+        helper([], 0, 0)
+        return ans
