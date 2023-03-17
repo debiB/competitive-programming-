@@ -1,0 +1,17 @@
+class Solution:
+    def __init__(self):
+        self.nums = []
+        self.re = []
+        self.li = []
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        def helper(comb, idx,k):
+            if(len(comb) == k):
+                    self.re.append(comb.copy())
+                    return
+            for i in range(idx, n+1):
+                comb.append(i)
+                helper(comb, i+1,k)
+                comb.pop()
+        helper([], 1,k)
+        return self.re
+            
