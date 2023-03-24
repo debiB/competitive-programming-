@@ -1,0 +1,9 @@
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        ans = False 
+        for i in range(0, len(matrix)):
+            if(matrix[i][0] <= target and matrix[i][-1] >= target):
+                for j in range(0, len(matrix[i])):
+                    if(matrix[i][j] == target):
+                        return True
+        return ans
