@@ -1,0 +1,15 @@
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        freq = [0]*26
+        j= 0 
+        _max =0
+        for i in range(len(s)):
+            freq[ord(s[i]) - ord('A')]+=1
+            if (i-j+1) - max(freq) == k:
+                _max = max(_max , i-j+1)
+            elif (i-j+1) - max(freq) > k:
+                freq[ord(s[j]) - ord('A')]-=1 
+                j+=1
+        if max(freq) == len(s) or j==0:
+            _max = len(s)
+        return _max
