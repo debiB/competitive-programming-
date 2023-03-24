@@ -1,0 +1,17 @@
+class Solution:
+    def commonChars(self, words: List[str]) -> List[str]:
+        _min = [float("inf")]*26
+        ans = []
+        for s in words:
+            char = [0]*26
+            for i in s:
+                char[ord(i)- ord('a')]+=1
+            for j in range(0,26):
+                _min[j] = min(_min[j], char[j])
+        k=0
+        while k<26:
+            if(_min[k] > 0):
+                ans.extend(chr(97+k)*_min[k] )
+            k+=1
+        return ans
+ 
