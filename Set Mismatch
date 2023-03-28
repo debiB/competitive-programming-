@@ -1,0 +1,17 @@
+class Solution:
+    def findErrorNums(self, nums: List[int]) -> List[int]:
+        piv = 0 
+        ans = []
+        while(piv < len(nums)):
+            if nums[piv] -1 == piv or nums[piv] == nums[nums[piv]-1]:
+                piv+=1 
+                continue
+            temp = nums[piv]
+            nums[piv], nums[temp-1] = nums[temp - 1], nums[piv]
+
+        for i in range(len(nums)):
+            if(nums[i] != i+1):
+                ans.append(nums[i])
+                ans.append(i+1)
+                break 
+        return ans
