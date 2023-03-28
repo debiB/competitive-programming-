@@ -1,0 +1,13 @@
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        piv = 0
+        while(piv < len(nums)):
+            if nums[piv] == piv or nums[piv] == len(nums):
+                piv+=1
+                continue
+            temp = nums[piv]
+            nums[piv], nums[temp] = nums[temp], nums[piv]
+        for i in range(len(nums)):
+            if nums[i] != i: 
+                return i 
+        return len(nums)
