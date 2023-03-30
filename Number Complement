@@ -1,0 +1,13 @@
+class Solution:
+    def findComplement(self, num: int) -> int:
+        curr = num
+        k=0
+        while num:
+            if num%2 != 0:
+                curr-= 2**k
+            else:
+                curr+= 2**k
+            num = num>>1
+            k+=1
+        return curr
+        
