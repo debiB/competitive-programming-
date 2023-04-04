@@ -1,0 +1,10 @@
+class Solution:
+    def hasGroupsSizeX(self, deck: List[int]) -> bool:
+        dic = {}        
+        for i in range(len(deck)):
+            dic.update({deck[i]: (dic.get(deck[i], 0)+1)})
+        li = dic.values()
+        if gcd(*li) == 1:
+            return False 
+        return True
+        
