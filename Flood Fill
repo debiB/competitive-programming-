@@ -1,0 +1,12 @@
+class Solution:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
+        directions = {(1,0),(-1,0), (0,-1),(0,1)}
+        icol = image[sr][sc]
+        def helper(row,col):
+            if row < 0 or row >= len(image) or col < 0 or col >= len(image[0]) or image[row][col] != icol or image[row][col] == color:
+                return
+            image[row][col] = color 
+            for r,c in directions:
+                helper(row+r,col+c)
+        helper(sr,sc)
+        return image
