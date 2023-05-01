@@ -1,24 +1,21 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-class Solution:
-    def averageOfLevels(self, root: Optional[TreeNode]) -> List[float]:
-        ans = []
-        q = deque([root])
-        while q:
-            total = 0
-            curr = len(q)
-            for _ in range(len(q)):
-                num = q.popleft()
-                total+= num.val 
+from collections import defaultdict
+from typing import List
 
-                if num.left:
-                    q.append(num.left)
-                if num.right:
-                    q.append(num.right)
-            ave = total/ curr
-            ans.append(ave)
-        return ans
+class Solution:
+    def minTime(self, n: int, edges: List[List[int]], hasApple: List[bool]) -> int:
+        d = defaultdict(list)
+        for a, b in edges:
+            d[a].append(b)
+            d[b].append(a)
+        visited = set()
+        def dfs(root):
+            visited.add(root)
+            counter = 0
+            for ch in d[root]:
+                if ch in visited:
+                    continue
+                ctime = dfs(ch)
+                counter += ctime + 2 if hasApple[ch] or ctime > 0 else 0
+            return counter
+        
+        return dfs(0)
