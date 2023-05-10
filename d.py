@@ -1,21 +1,23 @@
-from collections import defaultdict
-from typing import List
-
 class Solution:
-    def minTime(self, n: int, edges: List[List[int]], hasApple: List[bool]) -> int:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        ans = 0
         d = defaultdict(list)
-        for a, b in edges:
-            d[a].append(b)
-            d[b].append(a)
-        visited = set()
-        def dfs(root):
-            visited.add(root)
-            counter = 0
-            for ch in d[root]:
-                if ch in visited:
-                    continue
-                ctime = dfs(ch)
-                counter += ctime + 2 if hasApple[ch] or ctime > 0 else 0
-            return counter
-        
-        return dfs(0)
+        q = deque()
+        indeg = [0]*numCourses
+        for i,j in prerequisites:
+            d[j]. append(i)
+            indeg[i]+=1
+        for i  in range(numCourses):
+            if indeg[i] == 0:
+                q.append(i)
+        while q:
+            res = q.popleft()
+            ans += 1
+            for n in d[res]:
+                indeg[n] -=1
+                if indeg[n] == 0:
+                    q.append(n)
+        if ans == numCourses:
+            return True
+        else:
+            return False
