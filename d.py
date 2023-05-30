@@ -1,23 +1,19 @@
 class Solution:
-    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        ans = 0
-        d = defaultdict(list)
-        q = deque()
-        indeg = [0]*numCourses
-        for i,j in prerequisites:
-            d[j]. append(i)
-            indeg[i]+=1
-        for i  in range(numCourses):
-            if indeg[i] == 0:
-                q.append(i)
-        while q:
-            res = q.popleft()
-            ans += 1
-            for n in d[res]:
-                indeg[n] -=1
-                if indeg[n] == 0:
-                    q.append(n)
-        if ans == numCourses:
-            return True
-        else:
-            return False
+    def getMaximumGenerated(self, n: int) -> int:
+        d = defaultdict(int)
+        _max = 0
+        def get_max(n):
+            if n == 0 or n == 1:
+                d[n] = n
+            if n not in d:
+                if n%2 == 1:
+                    d[n] = get_max(n//2) + get_max((n//2)+1)
+                else:
+                    d[n] = get_max(n//2)
+            return d[n]
+
+        for i in range(n+1):
+            get_max(i)
+        for val in d.values():
+            _max = max(_max, val)    
+        return _max
