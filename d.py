@@ -1,19 +1,31 @@
 class Solution:
-    def getMaximumGenerated(self, n: int) -> int:
-        d = defaultdict(int)
-        _max = 0
-        def get_max(n):
-            if n == 0 or n == 1:
-                d[n] = n
-            if n not in d:
-                if n%2 == 1:
-                    d[n] = get_max(n//2) + get_max((n//2)+1)
-                else:
-                    d[n] = get_max(n//2)
-            return d[n]
+    def minScore(self, n: int, roads: List[List[int]]) -> int:
+        rep = [i for i in range(n+1)]
+        rank = [0]*(n+1)
+        def find(num):
+            root = num 
+            while root != rep[root]:
+                root = rep[root]
+            while num != root:
+                par = rep[num]
+                rep[num] = root
+                num = par
+            return rep[root]   
+        def union(num1, num2):
+            parX = find(num1)
+            parY = find(num2)
+            if rank[parX] < rank[parY]:
+                rep[parY] = parX
+            else:
+                rep[parY] = parX
+                rank[parX]+=1
+        def isconnected(root1, root2):
+            return find(root1) == find(root2)
 
-        for i in range(n+1):
-            get_max(i)
-        for val in d.values():
-            _max = max(_max, val)    
-        return _max
+        _min = float("inf")
+        for i,j,k in roads:
+            union(i,j)
+        for i,j,k in roads:
+            if isconnected(1,i) or isconnected(1,j):
+                _min = min(k,_min)
+        return _min
