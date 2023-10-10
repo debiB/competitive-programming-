@@ -1,21 +1,27 @@
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
-        def helper(a,b):
-            for i in range(len(a)):
-                if(a[i] != b[i]):
-                    return False
-            return True
-        freq1 = [0]*26
-        freq2 = [0]*26
+        if len(s1) > len(s2):
+            return False
+        target_hash = 0
+        for i in s1:
+            c = ord(i) - 96
+            target_hash += (c ** 4)
+        hash_val = 0
         for i in range(len(s1)):
-            freq1[ord(s1[i]) -97]+=1
-            j=0
-        for i in range(len(s2)):
-            freq2[ord(s2[i]) -97]+=1
-            if(i-j+1 >= len(s1)):
-                if helper(freq1, freq2):
-                    return True
-                else:
-                   freq2[ord(s2[j]) - 97]-=1 
-                   j+=1
+            c = ord(s2[i]) - 96
+            hash_val += (c ** 4)
+        if target_hash == hash_val:
+            return True
+        
+        k, j = 0, len(s1)
+        while j < len(s2):
+            dec = ord(s2[k]) - 96
+            add = ord(s2[j]) - 96
+            hash_val -= (dec ** 4)
+            hash_val += (add ** 4)
+            if hash_val == target_hash:
+                return True
+            k += 1
+            j += 1
+            
         return False
