@@ -1,6 +1,6 @@
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
-        dp = {}
+
         ans = []
         _len = n*2
         possible_strings = ["(", ")"]
